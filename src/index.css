@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { background: #09090D; -webkit-tap-highlight-color: transparent; }
+body { @apply font-sans text-white bg-bg antialiased; overflow-x: hidden; }
+::selection { background: rgba(168,85,247,.45); }
+
+@layer components {
+  .glass { @apply bg-white/[0.04] backdrop-blur-xl border border-white/10; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white bg-gradient-to-r from-accent to-pink shadow-glow transition duration-200 hover:brightness-110 active:scale-95; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-medium border border-white/15 text-white/90 transition duration-200 hover:bg-white/10 active:scale-95; }
+  .icon-btn { @apply grid place-items-center rounded-full text-white/80 transition duration-200 hover:text-white hover:bg-white/10 active:scale-90; }
+  .chip { @apply rounded-full px-4 py-2 text-sm border border-white/10 text-muted transition hover:text-white hover:border-white/25; }
+  .chip-on { @apply text-white border-accent/60 bg-accent/20; }
+  .range { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 99px; cursor: pointer; outline: none;
+    background: linear-gradient(90deg,#A855F7,#EC4899) left center / var(--p,0%) 100% no-repeat, rgba(255,255,255,.14); }
+  .range::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(168,85,247,.28); }
+  .range::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(168,85,247,.28); }
+}
+
+/* Анимированный фон */
+.aurora-bg { background: url('/assets/backgrounds/aurora-bg.svg') center/cover no-repeat; opacity: .55; }
+.aurora-bg::after { content: ''; position: absolute; inset: 0;
+  background: radial-gradient(60% 50% at 15% 10%, rgba(168,85,247,.22), transparent 70%), radial-gradient(50% 45% at 90% 30%, rgba(236,72,153,.14), transparent 70%), linear-gradient(#09090D00, #09090D 85%);
+  background-size: 140% 140%; animation: drift 22s ease-in-out infinite alternate; }
+@keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 60%; } }
+.grad-text { background: linear-gradient(90deg,#C084FC,#EC4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Звуковые волны */
+.wave-bar { flex: 1; min-width: 2px; border-radius: 3px; transform-origin: bottom;
+  background: linear-gradient(to top,#6366F1,#A855F7 55%,#EC4899);
+  animation: wave 1s ease-in-out infinite alternate both; }
+@keyframes wave { from { transform: scaleY(.22); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .wave-bar, .aurora-bg::after { animation: none; } }
